@@ -54,6 +54,8 @@ D --> G[Business Insights]
 ```
 
 ---
+### Schema Diagram
+![Chicago Crimes Schema](docs/images/Schema.png)
 
 ## 🧱 Data Architecture Layers
 
