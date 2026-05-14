@@ -1,4 +1,3 @@
-
 # Chicago Crimes Data Analytics Platform
 
 [![Language: Python](https://img.shields.io/badge/language-Python-blue.svg)](https://www.python.org/)
@@ -6,6 +5,8 @@
 [![Platform: Databricks](https://img.shields.io/badge/platform-Databricks-red.svg)](https://databricks.com/)
 [![Storage: Delta Lake](https://img.shields.io/badge/storage-Delta%20Lake-green.svg)](https://delta.io/)
 [![ML: scikit-learn](https://img.shields.io/badge/ML-scikit--learn-yellow.svg)](https://scikit-learn.org/)
+[![Build Status](https://github.com/YOUR_USERNAME/chicago-crimes-workspace/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/chicago-crimes-workspace/actions)
+[![Coverage Status](https://coveralls.io/repos/github/YOUR_USERNAME/chicago-crimes-workspace/badge.svg?branch=main)](https://coveralls.io/github/YOUR_USERNAME/chicago-crimes-workspace?branch=main)
 
 ---
 
@@ -66,19 +67,34 @@ chicago_crimes_project/
 
 ---
 
-## 🔑 Key Features
-1. **Data Quality & Governance**  
-   - Deduplication, type safety, spatial recovery, metadata tracking  
+## 🖼️ Data Architecture Diagram
+![Chicago Crimes Schema](docs/images/chicago_crimes_schema.png)
 
-2. **Dimensional Modeling**  
-   - Star schema with 5 dimensions  
-   - Pre-computed aggregations for performance  
-   - Community-level metrics for 77 areas  
+---
 
-3. **Machine Learning Analysis**  
-   - K-Means clustering with PCA visualization  
-   - Optimal cluster selection via Elbow, Silhouette, Davies-Bouldin  
-   - Identified distinct community crime profiles  
+## 📑 Data Schema
+
+### fact_crimes (Gold Layer)
+| Column            | Type    | Description                                |
+|-------------------|---------|--------------------------------------------|
+| crime_id          | BIGINT  | Primary key from source                     |
+| case_number       | STRING  | Chicago PD case number                      |
+| date_key          | INT     | FK to dim_date                              |
+| crime_type_key    | INT     | FK to dim_crime_type                        |
+| location_key      | INT     | FK to dim_location                          |
+| shift_key         | INT     | FK to dim_shift                             |
+| location_type_key | INT     | FK to dim_location_type                     |
+| is_arrest         | BOOLEAN | Arrest made indicator                       |
+| is_domestic       | BOOLEAN | Domestic incident indicator                 |
+| lat_final         | DOUBLE  | Final latitude (recovered if needed)        |
+| lon_final         | DOUBLE  | Final longitude (recovered if needed)       |
+| community_area_num| INT     | Chicago community area (1–77)               |
+| community_name    | STRING  | Community name                              |
+| district_code     | STRING  | Police district code                        |
+| ward_num          | INT     | Political ward number                       |
+
+### ml_community_features (Gold Layer)
+77 rows, 14 columns — aggregated features for ML analysis.
 
 ---
 
@@ -140,8 +156,6 @@ chicago_crimes_project/
 ## 📜 License
 MIT License – see LICENSE file for details.
 
----
 
 ## 📧 Contact
 **Maintainer**: rmahmood.bsds23seecs
-
