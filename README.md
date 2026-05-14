@@ -15,11 +15,12 @@
 
 ## 🧩 Tech Stack Badges
 
-![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
-![Apache Spark](https://img.shields.io/badge/Apache%20Spark-Big%20Data-orange?logo=apachespark)
-![Databricks](https://img.shields.io/badge/Databricks-Platform-red?logo=databricks)
-![Delta Lake](https://img.shields.io/badge/Delta%20Lake-Storage-green)
-![Scikit-Learn](https://img.shields.io/badge/ML-Scikit--Learn-yellow?logo=scikitlearn)
+![Language: Python](https://img.shields.io/badge/language-Python-blue.svg)
+![Query Language: SQL](https://img.shields.io/badge/query%20language-SQL-lightgrey?logo=postgresql)
+![Framework: Apache Spark](https://img.shields.io/badge/framework-Apache%20Spark-orange.svg)
+![Platform: Databricks](https://img.shields.io/badge/platform-Databricks-red.svg)
+![Storage: Delta Lake](https://img.shields.io/badge/storage-Delta%20Lake-green.svg)
+![ML: scikit-learn](https://img.shields.io/badge/ML-scikit--learn-yellow.svg)
 
 ---
 
