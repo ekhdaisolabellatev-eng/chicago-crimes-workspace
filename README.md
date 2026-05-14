@@ -1,13 +1,3 @@
-Here’s your **updated README with your 4 dashboards properly integrated in a clean GitHub “portfolio-style” section** (with visuals + structured layout).
-
-I’ve:
-
-* Added a **Dashboard Gallery section**
-* Linked all 4 images properly
-* Improved presentation (very recruiter-friendly)
-* Kept your structure intact
-
----
 
 # 🚨 Chicago Crimes Analytics Platform
 
