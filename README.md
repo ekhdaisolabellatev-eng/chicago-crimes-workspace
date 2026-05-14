@@ -1,161 +1,231 @@
-# Chicago Crimes Data Analytics Platform
+# 🚨 Chicago Crimes Analytics Platform
 
-[![Language: Python](https://img.shields.io/badge/language-Python-blue.svg)](https://www.python.org/)
-[![Framework: Apache Spark](https://img.shields.io/badge/framework-Apache%20Spark-orange.svg)](https://spark.apache.org/)
-[![Platform: Databricks](https://img.shields.io/badge/platform-Databricks-red.svg)](https://databricks.com/)
-[![Storage: Delta Lake](https://img.shields.io/badge/storage-Delta%20Lake-green.svg)](https://delta.io/)
-[![ML: scikit-learn](https://img.shields.io/badge/ML-scikit--learn-yellow.svg)](https://scikit-learn.org/)
-[![Build Status](https://github.com/YOUR_USERNAME/chicago-crimes-workspace/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/chicago-crimes-workspace/actions)
-[![Coverage Status](https://coveralls.io/repos/github/YOUR_USERNAME/chicago-crimes-workspace/badge.svg?branch=main)](https://coveralls.io/github/YOUR_USERNAME/chicago-crimes-workspace?branch=main)
+> **End-to-End Big Data + ML Pipeline on Databricks for Crime Intelligence (2001–2017)**
+> Built with Medallion Architecture, Delta Lake, and Scikit-learn for scalable crime analytics.
 
 ---
 
-## 📌 Overview
-A **production-grade data analytics platform** built on **Databricks** for analyzing historical crime data from Chicago (2001–2017).  
-Implements a complete **end-to-end data pipeline** (ingestion → transformation → machine learning) with **Unity Catalog** for governance and a **Medallion architecture** (Bronze → Silver → Gold) ensuring data quality and reliability.
+## 🌐 Live Dashboard
+
+### 📊 Power BI Analytics Dashboard
+
+[Chicago Crimes Power BI Dashboard](https://app.powerbi.com/groups/me/list?experience=power-bi&utm_source=chatgpt.com)
 
 ---
 
-## 🚀 Project Highlights
-- **Data Volume**: 6M+ crime records spanning 2001–2017  
-- **Architecture**: Medallion (Bronze/Silver/Gold) with Unity Catalog governance  
-- **ML Models**: K-Means clustering for community crime pattern analysis  
-- **Tech Stack**: Databricks, Apache Spark, Delta Lake, Python, SQL, scikit-learn  
-- **Data Quality**: Multi-stage validation (deduplication, type conformance, spatial recovery)
+## 🧩 Tech Stack Badges
+
+![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
+![Apache Spark](https://img.shields.io/badge/Apache%20Spark-Big%20Data-orange?logo=apachespark)
+![Databricks](https://img.shields.io/badge/Databricks-Platform-red?logo=databricks)
+![Delta Lake](https://img.shields.io/badge/Delta%20Lake-Storage-green)
+![Scikit-Learn](https://img.shields.io/badge/ML-Scikit--Learn-yellow?logo=scikitlearn)
 
 ---
 
-## 📂 Repository Structure
+## 🚀 Project Overview
+
+A **production-grade data engineering + analytics platform** designed to analyze **6M+ Chicago crime records (2001–2017)**.
+
+It implements a full **data lifecycle pipeline**:
+
+```
+Ingestion → Cleaning → Transformation → Feature Engineering → ML Clustering → Visualization
+```
+
+Built using **Medallion Architecture (Bronze → Silver → Gold)** with **Unity Catalog governance** for enterprise-grade reliability.
+
+---
+
+## 🏗️ System Architecture
+
+### 📌 Medallion Data Flow
+
+```mermaid
+graph TD;
+
+A[Raw CSV Crime Data 2001–2017] --> B[Bronze Layer<br>Raw Ingestion]
+B --> C[Silver Layer<br>Cleaned & Conformed Data]
+C --> D[Gold Layer<br>Analytics + ML Features]
+
+D --> E[Power BI Dashboard]
+D --> F[Machine Learning Models]
+D --> G[Business Insights]
+```
+
+---
+
+## 🧱 Data Architecture Layers
+
+### 🟤 Bronze Layer (Raw Data)
+
+* Raw ingestion of multi-year crime datasets
+* Metadata tracking (`_source_file`, `_ingest_ts`)
+* Schema-on-read flexibility
+
+### ⚪ Silver Layer (Cleaned Data)
+
+Key transformations:
+
+* Missing value handling
+* Deduplication
+* Date/time standardization
+* Spatial data recovery (139K+ corrected coordinates)
+* Boolean normalization (arrest/domestic flags)
+
+### 🟡 Gold Layer (Analytics Ready)
+
+* Fact + Dimension star schema
+* ML-ready dataset (`ml_community_features`)
+* Business intelligence tables for dashboards
+
+---
+
+## 📊 Data Model (Gold Layer)
+
+### 🧾 Fact Table: `fact_crimes`
+
+| Column             | Description              |
+| ------------------ | ------------------------ |
+| crime_id           | Unique identifier        |
+| case_number        | Police case reference    |
+| date_key           | Link to date dimension   |
+| crime_type_key     | Crime classification     |
+| location_key       | Location mapping         |
+| is_arrest          | Arrest indicator         |
+| is_domestic        | Domestic crime flag      |
+| lat_final          | Latitude                 |
+| lon_final          | Longitude                |
+| community_area_num | Chicago community (1–77) |
+| ward_num           | Political ward           |
+
+---
+
+## 🤖 Machine Learning Insights
+
+### 🔍 K-Means Clustering Results
+
+* Optimal clusters: **4–5**
+* Silhouette Score: **~0.45**
+* Davies-Bouldin Index: **< 1.5**
+
+### 📌 Key Insights
+
+* High-crime / low-arrest communities identified
+* Strong separation of violent vs property crime patterns
+* Geographic clustering of crime hotspots
+* Temporal crime trends across years
+
+---
+
+## 📈 Dashboard Preview
+
+📍 Crime Heatmaps
+📍 Time-Series Crime Trends
+📍 Community Risk Clusters
+📍 Arrest Rate Analysis
+📍 District-wise Breakdown
+
+> *(Add screenshots in `/docs/images/` for best GitHub presentation)*
+
+Example:
+
+```
+/docs/images/
+ ├── schema.png
+ ├── dashboard_overview.png
+ ├── heatmap.png
+```
+
+---
+
+## ⚙️ Tools & Technologies
+
+| Category      | Tools                        |
+| ------------- | ---------------------------- |
+| Big Data      | Apache Spark                 |
+| Platform      | Databricks                   |
+| Storage       | Delta Lake                   |
+| ML            | Scikit-learn                 |
+| Language      | Python                       |
+| Visualization | Power BI, Matplotlib, Plotly |
+| Governance    | Unity Catalog                |
+
+---
+
+## 📂 Project Structure
+
 ```
 chicago_crimes_project/
-├── README.md
 ├── chicago_datalake/
 │   └── bronze/
-│       └── crimes/
-│           └── Chicago_Crimes_2001_to_2004.csv   # Raw crime data
+├── chicago_crimes_workspace/
+│   ├── bronze/
+│   ├── silver/
+│   └── gold/
 ├── scripts/
-│   └── ML_ANALYSIS.ipynb                         # Machine learning clustering analysis
-└── chicago_crimes_workspace/                     # Unity Catalog namespace
-    ├── bronze/                                   # Raw ingested data
-    ├── silver/                                   # Cleaned & transformed data
-    └── gold/                                     # Business-ready analytics tables
+│   └── ML_ANALYSIS.ipynb
+└── docs/
+    └── images/
+        ├── Schema.png
+        └── dashboard.png
 ```
 
 ---
 
-## 🏗️ Data Architecture
+## 🚀 Getting Started
 
-### 🔹 Bronze Layer (Raw Ingestion)
-- Ingests CSV files from multiple time periods (2001–2017)  
-- Preserves lineage with metadata (`_source_file`, `_ingest_ts`)  
-- Schema-on-read for flexibility  
+```bash
+git clone https://github.com/YOUR_USERNAME/chicago-crimes-workspace.git
+cd chicago-crimes-workspace
+```
 
-### 🔹 Silver Layer (Cleaned & Conformed)
-- **Tables**: `crimes_unioned`, `crimes_typed`, `crimes_deduped`, `crimes_conformed`  
-- **Transformations**:  
-  - Date parsing with fallback strategies  
-  - Spatial recovery (139K+ coordinates)  
-  - Boolean standardization (arrest, domestic flags)  
-  - District/ward/community normalization  
-  - IUCR & FBI code standardization  
+### Steps:
 
-### 🔹 Gold Layer (Analytics-Ready)
-- **Tables**:  
-  - `fact_crimes` – Star schema fact table  
-  - `ml_community_features` – ML-ready features for 77 communities  
-  - Dimensions: `dim_date`, `dim_crime_type`, `dim_location`, `dim_shift`, `dim_location_type`
-
----
-
-## 🖼️ Data Architecture Diagram
-![Chicago Crimes Schema](docs/images/Schema.png)
-
----
-
-## 📑 Data Schema
-
-### fact_crimes (Gold Layer)
-| Column            | Type    | Description                                |
-|-------------------|---------|--------------------------------------------|
-| crime_id          | BIGINT  | Primary key from source                     |
-| case_number       | STRING  | Chicago PD case number                      |
-| date_key          | INT     | FK to dim_date                              |
-| crime_type_key    | INT     | FK to dim_crime_type                        |
-| location_key      | INT     | FK to dim_location                          |
-| shift_key         | INT     | FK to dim_shift                             |
-| location_type_key | INT     | FK to dim_location_type                     |
-| is_arrest         | BOOLEAN | Arrest made indicator                       |
-| is_domestic       | BOOLEAN | Domestic incident indicator                 |
-| lat_final         | DOUBLE  | Final latitude (recovered if needed)        |
-| lon_final         | DOUBLE  | Final longitude (recovered if needed)       |
-| community_area_num| INT     | Chicago community area (1–77)               |
-| community_name    | STRING  | Community name                              |
-| district_code     | STRING  | Police district code                        |
-| ward_num          | INT     | Political ward number                       |
-
-### ml_community_features (Gold Layer)
-77 rows, 14 columns — aggregated features for ML analysis.
-
----
-
-## 📊 ML Model Performance
-- **Clusters Identified**: 4–5  
-- **Silhouette Score**: ~0.45 (moderate separation)  
-- **Davies-Bouldin Index**: <1.5 (good compactness)  
-- **Insights**:  
-  - High-crime, low-arrest clusters flagged for resource allocation  
-  - Violent vs. property crime profiles separated  
-  - Temporal crime patterns analyzed  
-
----
-
-## ⚙️ Technology Stack
-- **Platform**: Databricks (AWS)  
-- **Storage**: Delta Lake (ACID, time travel)  
-- **Compute**: Apache Spark  
-- **Languages**: Python, SQL  
-- **ML Libraries**: scikit-learn, pandas, numpy  
-- **Visualization**: matplotlib, seaborn, plotly  
-- **Governance**: Unity Catalog  
-
----
-
-## 📥 Getting Started
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/chicago-crimes-workspace.git
-   cd chicago-crimes-workspace
-   ```
-2. **Configure Databricks authentication**  
-3. **Upload data to Bronze layer**  
-4. **Run ETL pipelines (Bronze → Silver → Gold)**  
-5. **Run ML Analysis (`ML_ANALYSIS.ipynb`)**
+1. Configure Databricks workspace
+2. Load raw datasets into Bronze layer
+3. Run ETL pipeline (Bronze → Silver → Gold)
+4. Execute ML notebook (`ML_ANALYSIS.ipynb`)
+5. Explore Power BI dashboard
 
 ---
 
 ## 🔮 Future Enhancements
-- [ ] Real-time ingestion via streaming APIs  
-- [ ] Predictive models (LSTM, Prophet)  
-- [ ] Geospatial clustering (DBSCAN)  
-- [ ] Interactive dashboards (Lakeview/Power BI)  
-- [ ] NLP on crime descriptions  
-- [ ] Weather-crime correlation analysis  
-- [ ] REST API for external access  
+
+* 🔴 Real-time streaming ingestion (Kafka / Spark Streaming)
+* 📈 Predictive crime forecasting (LSTM / Prophet)
+* 🌍 Geospatial clustering (DBSCAN)
+* 🧠 NLP on crime descriptions
+* 🌦️ Weather vs crime correlation analysis
+* 🌐 REST API for external analytics access
 
 ---
 
 ## 🤝 Contributing
-1. Fork the repo  
-2. Create a feature branch (`git checkout -b feature/YourFeature`)  
-3. Commit changes (`git commit -m 'Add YourFeature'`)  
-4. Push branch (`git push origin feature/YourFeature`)  
-5. Open a Pull Request  
+
+1. Fork repository
+2. Create feature branch
+3. Commit changes
+4. Push branch
+5. Open Pull Request
 
 ---
 
-## 📜 License
-MIT License – see LICENSE file for details.
+## 👩‍💻 Contributors
 
+**Rimsha Mahmood**
+**Muhammad Furqan Raza**
+**Tamkeen Sara**
+**Sana Khan Khitran**
 
-## 📧 Contact
-**Maintainer**: rmahmood.bsds23seecs
+---
+
+## ⭐ Why this project stands out
+
+✔ End-to-end big data pipeline
+✔ Real-world 6M+ dataset
+✔ Cloud-based Databricks architecture
+✔ ML + BI integration
+✔ Production-style medallion design
+✔ Portfolio-ready for data engineering roles
+
