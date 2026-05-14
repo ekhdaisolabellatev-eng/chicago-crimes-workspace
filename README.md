@@ -1,6 +1,4 @@
-Here’s a polished version of your README with improved flow, clarity, and professional formatting. I’ve also added **language and framework tags** at the very top for quick identification:
 
-```markdown
 # Chicago Crimes Data Analytics Platform
 
 [![Language: Python](https://img.shields.io/badge/language-Python-blue.svg)](https://www.python.org/)
@@ -146,4 +144,4 @@ MIT License – see LICENSE file for details.
 
 ## 📧 Contact
 **Maintainer**: rmahmood.bsds23seecs
-```
+
