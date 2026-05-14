@@ -68,7 +68,7 @@ chicago_crimes_project/
 ---
 
 ## 🖼️ Data Architecture Diagram
-![Chicago Crimes Schema](docs/images/chicago_crimes_schema.png)
+![Chicago Crimes Schema](docs/images/Schema.png)
 
 ---
 
